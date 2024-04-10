@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Amuser{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Dashboard</h1>
+        <p>You have {{ balance }} generations left<p>
+        <!-- <div class="form-container"> -->
+            <form action="{{ url_for('dashboard') }}" method="post">
+                <h2>Video Prompt:<h2>
+                <input type="text" id="prompt" name="prompt" required>
+                <button type="submit">Generate Video</button>
+            </form>
+        <!-- </div> -->
+    </div>
+{% endblock %}

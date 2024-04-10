@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}My Videos - Amuser{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>My Videos</h1>
+        {% for video in videos %}
+            <div class="video-listing">
+                <h2>{{ video.prompt }}</h2>
+                <!-- Assuming the video URL points to a viewable resource -->
+                <video src="{{ video.url }}" controls></video>
+            </div>
+        {% else %}
+            <p>No videos found.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

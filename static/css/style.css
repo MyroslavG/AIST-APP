@@ -1,0 +1,179 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa; /* Lighter shade for a modern look */
+    color: #333; /* Dark gray color for text for better readability */
+}
+
+header {
+    background-color: #000000; /* Vibrant blue */
+    color: #ffffff;
+    padding: 0 0; /* Reduced vertical padding for a thinner header */
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow for depth */
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #000000; /* Slightly lighter blue for the nav */
+    text-align: center; /* Centering the nav items */
+    padding: 10px 0; /* Adding vertical padding */
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px; /* Adding horizontal space between items */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px; /* More padding for a larger click area */
+    display: inline-block;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+nav ul li a:hover, nav ul li a:focus {
+    background-color: #3d4043; /* Darker shade of blue on hover/focus */
+    border-radius: 5px; /* Rounded corners on hover/focus */
+}
+
+.container {
+    max-width: 1200px; /* Constrain the width for better readability on larger screens */
+    margin: 20px auto; /* Centering the container */
+    background-color: #ffffff; /* Background contrast against body */
+    padding: 20px;
+    border-radius: 8px; /* Soft rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Light shadow for depth */
+}
+
+h1 {
+    color: #000000; /* Echoing the vibrant header color for consistency */
+    margin-bottom: 20px; /* More space below the heading */
+    text-align: center;
+}
+
+p {
+    line-height: 1.6; /* Increased line height for better readability */
+    color: #555; /* Slightly lighter text for a softer appearance */
+    margin: 10px 0; /* Spacing between paragraphs */
+}
+
+.video-listing {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #F3F4F6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.video-listing h2 {
+    color: #000000;
+    margin: 0 0 20px 0;
+}
+
+video {
+    width: 75%; /* Makes the video responsive */
+    max-width: 500px; /* Limits the video size for very large screens */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 5px; /* Optional: Rounds the corners of the video player */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adds a subtle shadow for depth */
+}
+
+.video-listing p {
+    color: #333;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #f44336; /* Red color for the logout button for visibility */
+    color: white;
+    text-decoration: none; /* Removes underline from link */
+    border: none; /* Removes border from button */
+    border-radius: 5px; /* Rounded corners for the button */
+    cursor: pointer; /* Changes the cursor to a pointer on hover */
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker shade of red on hover */
+}
+
+/* Form container (if needed) */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Styling for all form elements */
+/* form {
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+} */
+
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    color: #333;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't increase the width */
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: .75em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Makes sure the padding does not affect the overall width */
+}
+
+button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #3a3737;
+}
+
+.flash-messages {
+    padding: 1rem;
+    text-align: center;
+}
+
+.flash-message {
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    background-color: #f2f4f6;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 600px;
+}

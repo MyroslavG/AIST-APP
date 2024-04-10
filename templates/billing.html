@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Billing - Amuser{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Billing</h1>
+        <!-- <p>Subscription Plan: {{ subscription_plan }}</p>
+        <p>Subscription Status: {{ subscription_status }}</p> -->
+        <!-- Consider adding a button or link for plan upgrades or other actions -->
+        <!-- <a href="/upgrade" class="btn">Upgrade Plan</a> -->
+        <h2>Buy generations</h2>
+        <form action="{{ url_for('create_checkout_session') }}" method="POST">
+            <label for="quantity">How many generations do you want to buy? ($0.50 each)</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <button type="submit">Checkout</button>
+        </form>
+    </div>
+{% endblock %}  
