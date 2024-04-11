@@ -15,12 +15,13 @@ header {
 }
 
 nav ul {
-    margin: 0;
+    display: flex;
+    list-style-type: none;
     padding: 0;
-    list-style: none;
-    background-color: #000000; /* Slightly lighter blue for the nav */
-    text-align: center; /* Centering the nav items */
-    padding: 10px 0; /* Adding vertical padding */
+    margin: 0;
+    justify-content: space-around; /* This spreads out the items evenly */
+    align-items: center; /* Aligns items vertically */
+    flex-wrap: nowrap; /* Prevents wrapping */
 }
 
 nav ul li {
@@ -31,9 +32,16 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: white;
-    padding: 10px 20px; /* More padding for a larger click area */
-    display: inline-block;
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    padding: 10px 15px; /* Adjust padding to manage space */
+    display: block;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    nav ul li a {
+        padding: 10px 8px; /* Slightly reduce padding on smaller screens */
+        font-size: 14px; /* Adjust font size for small screens */
+    }
 }
 
 nav ul li a:hover, nav ul li a:focus {
