@@ -132,7 +132,7 @@ def dashboard():
         if response.status_code == 200:
             flash('Your video generation process has started')
         else:
-            flash('Your video generation process failed')
+            flash('You have no more generations left. Please purchase some on the "Billing" page!')
     
     return render_template('dashboard.html', balance=balance)#, user=session['user'])
 
