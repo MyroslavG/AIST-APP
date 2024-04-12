@@ -8,6 +8,7 @@
         {% for video in videos %}
             <div class="video-listing">
                 <h2>{{ video.prompt }}</h2>
+                <p>{{ video.created_at }}</p>
                 {% if video.status == 'Processing' %}
                     <p>Video is currently processing</p>
                 {% else %}
