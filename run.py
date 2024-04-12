@@ -124,12 +124,10 @@ def dashboard():
 
     if request.method == 'POST':
         prompt = request.form.get('prompt')
-        # print(prompt)
 
         response = requests.post('https://aist.amuservc.com/video', headers=headers, json={
             'prompt': prompt,
         })  
-        # print(response.json())
 
         if response.status_code == 200:
             flash('Your video generation process has started')
@@ -146,7 +144,6 @@ def payment_success():
 
     user_id = session.get('user_id')
     access_token = session.get('access_token')
-
     headers = {
         'Authorization': f'Bearer {access_token}'
     }

@@ -8,8 +8,11 @@
         {% for video in videos %}
             <div class="video-listing">
                 <h2>{{ video.prompt }}</h2>
-                <!-- Assuming the video URL points to a viewable resource -->
-                <video src="{{ video.url }}" controls></video>
+                {% if video.status == 'Processing' %}
+                    <p>Video is currently processing</p>
+                {% else %}
+                    <video src="{{ video.url }}" controls></video>
+                {% endif %}
             </div>
         {% else %}
             <p>No videos found.</p>
