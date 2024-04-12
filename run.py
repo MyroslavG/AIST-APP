@@ -129,7 +129,7 @@ def dashboard():
             'prompt': prompt,
         })  
 
-        if response.status_code == 200:
+        if (response.json().get('status', []) == 'success'):
             flash('Your video generation process has started')
         else:
             flash('You have no more generations left. Please purchase some on the "Billing" page!')
