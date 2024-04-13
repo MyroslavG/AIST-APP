@@ -130,7 +130,7 @@ def dashboard():
         })  
 
         if (response.json().get('status', []) == 'success'):
-            flash('Your video generation process has started')
+            flash('Your video generation process has started. The video reference will appear in the "My Videos" section within the next 15 seconds.')
         else:
             flash('You have no more generations left. Please purchase some on the "Billing" page!')
     
