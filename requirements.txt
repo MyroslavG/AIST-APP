@@ -18,3 +18,4 @@ boto3
 requests
 openai
 reportlab
+flask_recaptcha

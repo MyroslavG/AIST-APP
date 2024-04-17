@@ -5,6 +5,7 @@ from datetime import timedelta
 import stripe
 from dotenv import load_dotenv
 import os
+# from flask_recaptcha import ReCaptcha
 
 app = Flask(__name__)
 
@@ -13,21 +14,40 @@ load_dotenv()
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=24)
 
+# app.config.update({'RECAPTCHA_ENABLED': True,
+#                    'RECAPTCHA_SITE_KEY': os.getenv('RECAPTCHA_SITE_KEY'),
+#                    'RECAPTCHA_SECRET_KEY': os.getenv('RECAPTCHA_SECRET_KEY')})
+
+# recaptcha = ReCaptcha(app=app)
+
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        print("Checking if user_id in session")  # Debug print
+        print("Checking if user_id in session")
         if 'access_token' not in session:
-            print(f"Redirecting to login from {request.url}")  # Debug print
+            print(f"Redirecting to login from {request.url}")
             return redirect(url_for('login', next=request.url))
         return f(*args, **kwargs)
     return decorated_function
+
+def verify_recaptcha(response):
+    secret = os.getenv('RECAPTCHA_SECRET_KEY')
+    payload = {'secret': secret, 'response': response}
+    verify_url = 'https://www.google.com/recaptcha/api/siteverify'
+    response = requests.post(verify_url, data=payload)
+    result = response.json()
+    return result.get('success', False)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     session.permanent = True
     if request.method == 'POST':
+        recaptcha_response = request.form.get('g-recaptcha-response')
+        if not verify_recaptcha(recaptcha_response):
+            flash('Invalid reCAPTCHA. Please try again.')
+            return render_template('login.html')
+
         email = request.form.get('email')
         password = request.form.get('password')
         
@@ -51,6 +71,11 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        recaptcha_response = request.form.get('g-recaptcha-response')
+        if not verify_recaptcha(recaptcha_response):
+            flash('Invalid reCAPTCHA. Please try again.')
+            return render_template('register.html')
+
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
