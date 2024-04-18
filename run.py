@@ -87,12 +87,25 @@ def register():
         })
 
         if response.ok:
-            flash('Registration successful. Please log in.')
+            flash('Registration successful. Please check your email to confirm.', 'info')
             return redirect(url_for('login'))
         else:
             flash('Registration failed. ' + response.json().get('message', ''))
 
     return render_template('register.html')
+
+@app.route('/verify_email/<token>', methods=['GET'])
+def verify_email(token):
+    try:
+        response = requests.get(f'https://aist.amuservc.com/verify_email/{token}')
+        if response.status_code == 200:
+            flash('Your email has been verified! You can now log in.', 'success')
+        else:
+            flash('Invalid or expired token.', 'error')
+    except:
+        flash('There was a problem verifying your email. Please try again.', 'error')
+
+    return redirect(url_for('login'))
 
 @app.route('/create_checkout_session', methods=['GET', 'POST'])
 @login_required
@@ -146,9 +159,14 @@ def dashboard():
     response = requests.get(api_url, headers=headers) #, json={'user_id': user_id})
     if response.status_code == 200:
         balance = response.json().get('balance', [])
+        email_verified = response.json().get('email_verified', [])
 
     if request.method == 'POST':
         prompt = request.form.get('prompt')
+
+        if not email_verified:
+            flash('Please verify your email before generating videos.', 'warning')
+            return render_template('dashboard.html', balance=balance)
 
         response = requests.post('https://aist.amuservc.com/video', headers=headers, json={
             'prompt': prompt,
@@ -260,6 +278,7 @@ def billing():
 def logout():
     session.pop('user', None)
     session.pop('access_token', None)
+    flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
