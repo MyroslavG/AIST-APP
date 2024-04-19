@@ -198,11 +198,11 @@ button:hover {
 }
 
 .video-wrapper {
-    flex-basis: 60%;
+    flex-basis: 50%;
 }
 
 .video-description {
-    flex-basis: 35%;
+    flex-basis: 45%;
     padding: 10px;
     background-color: #f4f4f4; /* Light grey background */
     border-radius: 5px;
