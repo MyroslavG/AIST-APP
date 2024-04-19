@@ -13,6 +13,11 @@
                     <p>Video is currently processing</p>
                 {% else %}
                     <video src="{{ video.url }}" controls></video>
+                    <div>
+                        <a href="{{ video.url }}" download="amuser_video.mp4">Download Video</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank">Share on Facebook</a>
+                        <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank">Share on X</a>
+                    </div>
                 {% endif %}
             </div>
         {% else %}
