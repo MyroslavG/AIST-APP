@@ -6,20 +6,25 @@
     <div class="container">
         <h1>My Videos</h1>
         {% for video in videos %}
-            <div class="video-listing">
+        <div class="video-container">
+            <div class="video-wrapper">
                 <h2>{{ video.prompt }}</h2>
                 <p>{{ video.created_at }}</p>
                 {% if video.status == 'Processing' %}
                     <p>Video is currently processing</p>
                 {% else %}
                     <video src="{{ video.url }}" controls></video>
-                    <div>
-                        <a href="{{ video.url }}" download="amuser_video.mp4">Download Video</a>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank">Share on Facebook</a>
-                        <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank">Share on X</a>
+                    <div class="sharing-icons">
+                        <a href="{{ video.url }}" download="amuser_video.mp4" title="Download Video"><i class="fas fa-download"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 {% endif %}
             </div>
+            <div class="video-description">
+                <p>Description or additional text goes here. This text can provide more details about the video, the context, or any other relevant information that enhances user engagement.</p>
+            </div>
+        </div>
         {% else %}
             <p>No videos found.</p>
         {% endfor %}

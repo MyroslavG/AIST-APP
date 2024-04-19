@@ -185,3 +185,43 @@ button:hover {
     width: 90%;
     max-width: 600px;
 }
+
+.video-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.video-wrapper {
+    flex-basis: 60%;
+}
+
+.video-description {
+    flex-basis: 35%;
+    padding: 10px;
+    background-color: #f4f4f4; /* Light grey background */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.sharing-icons a {
+    margin-right: 10px;
+    color: #333; /* Icon color */
+    font-size: 24px; /* Icon size */
+}
+
+.sharing-icons a:hover {
+    color: #007bff; /* Hover color change */
+}
+
+@media (max-width: 768px) {
+    .video-container {
+        flex-direction: column;
+    }
+
+    .video-wrapper,
+    .video-description {
+        flex-basis: 100%;
+    }
+}
