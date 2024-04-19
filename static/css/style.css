@@ -76,6 +76,10 @@ p {
     background-color: #F3F4F6;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .video-listing h2 {
