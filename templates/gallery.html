@@ -5,25 +5,36 @@
 {% block content %}
     <div class="container">
         <h1 class="gallery-title">Gallery</h1>
+        {% if videos %}
         <div class="video-gallery">
             {% for video in videos %}
             <div class="video-card">
                 <div class="video-header">
                     <h2>{{ video.prompt }}</h2>
-                    <h3>{{ video.username }}</h3>
-                    <h4>{{ video.email }}</h4>
-                    <p>{{ video.created_at }}</p>
+                    <h3>Uploaded by: {{ video.username }}</h3>
+                    <h4>Contact: {{ video.email }}</h4>
+                    <p>Uploaded on: {{ video.created_at.strftime('%Y-%m-%d') }}</p>
                 </div>
-                <video src="{{ video.url }}" controls class="video-content"></video>
+                <div class="video-content">
+                    <video src="{{ video.url }}" controls></video>
+                </div>
                 <div class="video-footer">
-                    <a href="{{ video.url }}" download="amuser_video.mp4" class="icon-link"><i class="fas fa-download"></i></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank" class="icon-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank" class="icon-link"><i class="fab fa-twitter"></i></a>
+                    <a href="{{ video.url }}" download="amuser_video.mp4" class="icon-link" title="Download Video">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank" class="icon-link" title="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank" class="icon-link" title="Share on Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 </div>
             </div>
-            {% else %}
-                <p>No videos found.</p>
             {% endfor %}
         </div>
+        {% else %}
+        <p>No videos found.</p>
+        {% endif %}
     </div>
 {% endblock %}
+

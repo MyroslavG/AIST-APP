@@ -250,32 +250,28 @@ button:hover {
 }
 
 .video-card {
-    background: #f9f9f9;
-    border: 1px solid #ccc;
+    background: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .video-header, .video-footer {
     padding: 15px;
-    background: #fff;
+    background: #f8f8f8;
 }
 
 .video-content {
-    width: 100%;
-    height: auto;
+    padding: 10px;
 }
 
 .icon-link {
-    margin-right: 10px;
-    color: #555;
+    color: #666;
     text-decoration: none;
+    font-size: 1.5em;
 }
 
 .icon-link:hover {
-    color: #000;
-}
-
-.fas, .fab {
-    margin-right: 5px;
+    color: #333;
 }
