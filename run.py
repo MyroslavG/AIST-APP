@@ -278,7 +278,7 @@ def billing():
 def gallery():
     api_url = 'https://aist.amuservc.com/gallery'
     response = requests.get(api_url)
-    print(response.json())
+    print(response)
 
     if response.status_code == 200:
         videos = response.json().get('videos', [])
