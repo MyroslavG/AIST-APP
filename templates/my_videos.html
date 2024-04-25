@@ -18,6 +18,7 @@
                         <a href="{{ video.url }}" download="amuser_video.mp4" title="Download Video"><i class="fas fa-download"></i></a>
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+                        <button onclick="makeVideoPublic({{ video.id }})">Make Public</button>
                     </div>
                 {% endif %}
             </div>
@@ -30,3 +31,21 @@
         {% endfor %}
     </div>
 {% endblock %}
+{% block scripts %}
+    <script>
+        function makeVideoPublic(videoId) {
+            fetch(`https://aist.amuservc.com/make_video_public/${videoId}`, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Video is now public!');
+                    // Optionally update the UI to reflect the change
+                } else {
+                    alert('Failed to make video public: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error making video public:', error));
+        }
+    </script>
+{% endblock %}
+

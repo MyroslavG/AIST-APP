@@ -274,6 +274,10 @@ def billing():
 
     return render_template('billing.html', subscription_plan=subscription_plan, subscription_status=subscription_status)
 
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
+
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('user', None)
