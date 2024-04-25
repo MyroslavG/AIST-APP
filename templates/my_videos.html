@@ -32,10 +32,9 @@
         {% endfor %}
     </div>
 {% endblock %}
-
 {% block scripts %}
     <script>
-        function makeVideoPublic(videoId) {
+        function toggleVideoVisibility(videoId, element) {
             const tokenHolder = document.getElementById('tokenHolder');
             const accessToken = tokenHolder.getAttribute('data-token'); // Get the access token from the HTML attribute
 
@@ -44,7 +43,7 @@
                 return;
             }
 
-            fetch(`https://aist.amuservc.com//toggle_video_visibility/${videoId}`, {
+            fetch(`https://aist.amuservc.com/toggle_video_visibility/${videoId}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
@@ -53,13 +52,13 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Video is now public!');
+                    alert(`Video is now ${data.new_status}!`);
+                    element.textContent = data.new_status === 'public' ? 'Make Private' : 'Make Public'; // Update button text accordingly
                 } else {
-                    alert('Failed to make video public: ' + data.message);
+                    alert('Failed to toggle video visibility: ' + data.message);
                 }
             })
-            .catch(error => console.error('Error making video public:', error));
+            .catch(error => console.error('Error toggling video visibility:', error));
         }
     </script>
 {% endblock %}
-
