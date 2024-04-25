@@ -64,6 +64,11 @@ h1 {
     text-align: center;
 }
 
+h2, h3 {
+    color: #000000; /* Echoing the vibrant header color for consistency */
+    margin-bottom: 5px;
+}
+
 p {
     line-height: 1.6; /* Increased line height for better readability */
     color: #555; /* Slightly lighter text for a softer appearance */
@@ -250,28 +255,32 @@ button:hover {
 }
 
 .video-card {
-    background: #fff;
-    border: 1px solid #ddd;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .video-header, .video-footer {
     padding: 15px;
-    background: #f8f8f8;
+    background: #fff;
 }
 
 .video-content {
-    padding: 10px;
+    width: 100%;
+    height: auto;
 }
 
 .icon-link {
-    color: #666;
+    margin-right: 10px;
+    color: #555;
     text-decoration: none;
-    font-size: 1.5em;
 }
 
 .icon-link:hover {
-    color: #333;
+    color: #000;
+}
+
+.fas, .fab {
+    margin-right: 5px;
 }
