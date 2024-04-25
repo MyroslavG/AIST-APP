@@ -280,6 +280,7 @@ def gallery():
     response = requests.get(api_url)
     print(response)
 
+    videos = []
     if response.status_code == 200:
         videos = response.json().get('videos', [])
 
