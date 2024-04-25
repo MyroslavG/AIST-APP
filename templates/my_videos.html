@@ -5,6 +5,7 @@
 {% block content %}
     <div class="container">
         <h1>My Videos</h1>
+        <div data-token="{{ access_token }}" id="tokenHolder"></div>
         {% for video in videos %}
         <div class="video-listing">
             <div class="video-wrapper">
@@ -18,7 +19,7 @@
                         <a href="{{ video.url }}" download="amuser_video.mp4" title="Download Video"><i class="fas fa-download"></i></a>
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
-                        <button onclick="makeVideoPublic({{ video.id }})">Make Public</button>
+                        <button onclick="toggleVideoVisibility({{ video.id }}, this)">{{ 'Make Private' if video.is_public else 'Make Public' }}</button>
                     </div>
                 {% endif %}
             </div>
@@ -31,16 +32,28 @@
         {% endfor %}
     </div>
 {% endblock %}
+
 {% block scripts %}
     <script>
         function makeVideoPublic(videoId) {
-            console.log(videoId);
-            fetch(`https://aist.amuservc.com/make_video_public/${videoId}`, { method: 'POST' })
+            const tokenHolder = document.getElementById('tokenHolder');
+            const accessToken = tokenHolder.getAttribute('data-token'); // Get the access token from the HTML attribute
+
+            if (!accessToken) {
+                alert('Authentication token is missing');
+                return;
+            }
+
+            fetch(`https://aist.amuservc.com//toggle_video_visibility/${videoId}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     alert('Video is now public!');
-                    // Optionally update the UI to reflect the change
                 } else {
                     alert('Failed to make video public: ' + data.message);
                 }

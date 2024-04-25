@@ -222,7 +222,7 @@ def my_videos():
     else:
         videos = []
 
-    return render_template('my_videos.html', videos=videos)
+    return render_template('my_videos.html', videos=videos, access_token=access_token)
 
 @app.route('/profile')
 @login_required
@@ -278,7 +278,7 @@ def billing():
 def gallery():
     api_url = 'https://aist.amuservc.com/gallery'
     response = requests.get(api_url)
-    print(response)
+    # print(response)
 
     videos = []
     if response.status_code == 200:
