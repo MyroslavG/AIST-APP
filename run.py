@@ -276,7 +276,13 @@ def billing():
 
 @app.route('/gallery')
 def gallery():
-    return render_template('gallery.html')
+    api_url = 'https://aist.amuservc.com/gallery'
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        videos = response.json().get('videos', [])
+
+    return render_template('gallery.html', videos=videos)
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():

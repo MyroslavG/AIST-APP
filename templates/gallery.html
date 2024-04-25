@@ -1,9 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}Billing - VidGenAI{% endblock %}
+{% block title %}Gallery - VidGenAI{% endblock %}
 
 {% block content %}
     <div class="container">
-        <h1>Gallery</h1>
+        <h1 class="gallery-title">Gallery</h1>
+        <div class="video-gallery">
+            {% for video in videos %}
+            <div class="video-card">
+                <div class="video-header">
+                    <h2>{{ video.prompt }}</h2>
+                    <h3>{{ video.username }}</h3>
+                    <h4>{{ video.email }}</h4>
+                    <p>{{ video.created_at }}</p>
+                </div>
+                <video src="{{ video.url }}" controls class="video-content"></video>
+                <div class="video-footer">
+                    <a href="{{ video.url }}" download="amuser_video.mp4" class="icon-link"><i class="fas fa-download"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ video.url|urlencode }}" target="_blank" class="icon-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url={{ video.url|urlencode }}" target="_blank" class="icon-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            {% else %}
+                <p>No videos found.</p>
+            {% endfor %}
+        </div>
     </div>
-{% endblock %}  
+{% endblock %}
