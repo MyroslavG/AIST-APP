@@ -6,6 +6,13 @@ import stripe
 from dotenv import load_dotenv
 import os
 # from flask_recaptcha import ReCaptcha
+import sentry_sdk
+
+sentry_sdk.init(
+    dsn="https://4a68f25d0e099e5c225deec548a49a97@o4507158764519424.ingest.us.sentry.io/4507158767009792",
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+)
 
 app = Flask(__name__)
 
